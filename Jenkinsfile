@@ -12,12 +12,11 @@ pipeline {
                 '''
             }
         }
-        
 
         stage('Docker Login') {
             steps {
-                withCredentials([string(credentialsId: 'JENKINS_PASSWORD', variable: 'DOCKER_PASSWORD')]) {
-                    sh 'echo $DOCKER_PASSWORD | docker login -u mustafa3li --password-stdin'
+                withCredentials([usernamePassword(credentialsId: 'AhmedMa', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+                    sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
                 }
             }
         }
